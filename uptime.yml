@@ -1,15 +1,7 @@
 ---
-- hosts: all
+- hosts: agents
   tasks:
-    - name: get hostname
-      command: /bin/hostname
-      register: hostname
-
-    - name: get uptime
-      shell: /usr/bin/uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'
-      register: uptime
-
-    - debug: var={{ item }}
-      with_items:
-        - hostname.stdout
-        - uptime.stdout
+  - name: Check hostname
+    command: hostname
+  - name: Check uptime
+    command: uptime
