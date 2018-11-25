@@ -1,11 +1,6 @@
 ---
 - hosts: all
   tasks:
-    - name: get hostname
-      command: /bin/hostname
-      changed_when: False
-      register: hostname
-
     - name: get uptime
       shell: /usr/bin/uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'
       changed_when: False
@@ -13,5 +8,4 @@
 
     - debug: var={{ item }}
       with_items:
-        - hostname.stdout
         - uptime.stdout
