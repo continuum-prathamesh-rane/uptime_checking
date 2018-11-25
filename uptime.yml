@@ -1,7 +1,5 @@
 ---
 - hosts: all
-  remote_user: root
-
   tasks:
     - name: get hostname
       command: /bin/hostname
